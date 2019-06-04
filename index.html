@@ -12,6 +12,7 @@
         background-color: black;
         text-align: center;
         font-size: 18px;
+        max-width: 1000px;
       }
 
       @media only screen and (max-width: 1024px) {
@@ -40,6 +41,11 @@
         margin-top: 2rem;
       }
 
+      .album-title {
+      	color: #999;
+      	font-size: 1.5rem;
+      }
+
       .song-title {
         cursor: pointer;
         text-decoration: underline;
@@ -58,19 +64,25 @@
   <body>
     <img id="logo" src="img/tb_logo.gif">
 
-    <ul id="song-container">
-      <li class="song-title" data-audio-source="audio/01-rapture.mp3">01 - Rapture</li>
-      <li class="song-title" data-audio-source="audio/02-ego.mp3">02 - Ego</li>
-      <li class="song-title" data-audio-source="audio/03-ritual.mp3">03 - Ritual</li>
-      <li class="song-title" data-audio-source="audio/04-sin.mp3">04 - Sin</li>
-      <li class="song-title" data-audio-source="audio/05-intermission.mp3">05 - Intermission</li>
-      <li class="song-title" data-audio-source="audio/06-free.mp3">06 - Free</li> 
-    </ul>
-
     <audio id="audio-player" controls>
       <source id="audio-source" src="" />
       Your browser does not support the <code>audio</code> element.
     </audio>
+
+    <ul id="song-container">
+      <li class="album-title">Marrow (2009 Rough Cuts)</li>
+      <li class="song-title" data-audio-source="audio/rapture.mp3">Rapture</li>
+      <li class="song-title" data-audio-source="audio/approaching-wonderland.mp3">Approaching Wonderland</li>
+      <li class="song-title" data-audio-source="audio/do-what-they-say.mp3">Do What They Say</li>
+      <li class="song-title" data-audio-source="audio/faceless.mp3">Faceless</li>
+      <li class="album-title">A New Prophecy (2008 Demo)</li>
+      <li class="song-title" data-audio-source="audio/the-cycle.mp3">The Cycle</li>
+      <li class="song-title" data-audio-source="audio/cursed-forever-more.mp3">Cursed Forever More</li>
+      <li class="song-title" data-audio-source="audio/heart-of-the-valley.mp3">Heart of the Valley</li>
+      <li class="song-title" data-audio-source="audio/the-way-it-ends.mp3">The Way It Ends</li>
+      <li class="album-title">A New Prophecy (2007 Demo)</li>
+      <li class="song-title" data-audio-source="audio/revelate.mp3">Revelate</li>
+    </ul>
 
     <script>
       (function() {
@@ -85,7 +97,7 @@
             element.classList.remove(SONG_PLAYING);
           });
 
-          if (event.target && event.target.nodeName == "LI") {
+          if (event.target && event.target.nodeName == "LI" && event.target.className.includes("song-title")) {
             let audioSource = event.target.dataset.audioSource;
             audioPlayerSource.src = audioSource;
             audioPlayer.load();
